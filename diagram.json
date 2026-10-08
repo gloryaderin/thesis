@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "author": "makinde joseph",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-c3-devkitm-1", "id": "esp", "top": 114.9, "left": -70.98, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -104.84, "left": -172.8, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -132.9,
+      "left": -119.3,
+      "attrs": { "distance": "150" }
+    },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 28.8, "left": -173.4, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic2",
+      "top": -142.5,
+      "left": 178.3,
+      "attrs": { "distance": "168" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:0", "ultrasonic1:ECHO", "green", [ "h-28.8", "v-115.2", "h86.4" ] ],
+    [
+      "esp:1",
+      "ultrasonic1:TRIG",
+      "white",
+      [ "h-48", "v-124.8", "h0", "v-19.2", "h0", "v0", "h96" ]
+    ],
+    [ "ultrasonic1:VCC", "vcc1:VCC", "red", [ "h-86.4", "v-38.4" ] ],
+    [ "gnd1:GND", "ultrasonic1:GND", "black", [ "v-28.8", "h145.2" ] ],
+    [ "esp:3V3.1", "vcc1:VCC", "#8f4814", [ "h-163.2", "v-76.8" ] ],
+    [ "esp:GND.1", "gnd1:GND", "gray", [ "v-105.6", "h-96" ] ],
+    [ "ultrasonic2:ECHO", "esp1:0", "green", [ "v57.6", "h-58.4", "v134.4", "h19.2" ] ],
+    [ "ultrasonic2:TRIG", "esp1:1", "white", [ "v48", "h-67.6", "v153.6", "h-9.6" ] ],
+    [ "ultrasonic2:VCC", "vcc2:VCC", "red", [ "v19.2", "h-96" ] ],
+    [ "ultrasonic2:GND", "gnd2:GND", "black", [ "v28.8", "h-1.2", "v9.6", "h-134.4" ] ],
+    [ "esp1:GND.1", "gnd2:GND", "gray", [ "v-48", "h-115.2" ] ],
+    [ "esp1:3V3.1", "vcc2:VCC", "#8f4814", [ "h-105.6", "v0", "h-48", "v-144" ] ],
+    [ "ultrasonic2:VCC", "vcc1:VCC", "red", [ "v28.8", "h-412.8" ] ],
+    [ "ultrasonic2:TRIG", "esp:5", "cyan", [ "v268.8", "h-237.98" ] ],
+    [ "ultrasonic2:ECHO", "esp:4", "green", [ "v278.4", "h-247.98" ] ],
+    [ "ultrasonic2:GND", "gnd1:GND", "black", [ "v67.2", "h-356.4" ] ]
+  ],
+  "dependencies": {}
+}
